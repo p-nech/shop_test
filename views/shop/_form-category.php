@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Category;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Category */
@@ -14,9 +16,14 @@ use yii\widgets\ActiveForm;
 
     
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true])/*->label('Имя')*/ ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'parent_id')->textInput()/*->label('Номер родительской категории')*/ ?>
+    <?php
+        $categories = Category::find()->orderBy('parent_id')->all();
+        $items = ArrayHelper::map($categories, 'id', 'title');
+        array_unshift($items,'Вставить в корень');
+    ?>
+    <?= $form->field($model, 'parent_id')->dropDownList($items) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

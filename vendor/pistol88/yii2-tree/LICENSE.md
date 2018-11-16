@@ -1,8 +1,8 @@
-The Yii framework is free software. It is released under the terms of
-the following BSD License.
+The yii2-tree module is free software. It is released under the terms of
+the following BSD License. 
 
-Copyright © 2008 by Yii Software LLC (http://www.yiisoft.com)
-All rights reserved.
+Copyright © 2016 by pistol88 (https://github.com/pistol88)
+All rights reserved. 
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
@@ -30,4 +30,3 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
-

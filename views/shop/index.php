@@ -1,6 +1,8 @@
 <?php
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use app\models\Category;
 ?>
 <h1>Категории</h1>
 <table border='0'>
@@ -8,7 +10,7 @@ use yii\grid\GridView;
     if ($prev_id != -1) {
 ?>
     <tr><td>
-        <a href="/shop_test/web/?r=shop/index&cat_id=<?= $prev_id ?>">
+        <a href="/shop_test/web/?r=shop/index&id=<?= $prev_id ?>">
         <?= '..' ?>
         </a>
     </td><td></td></tr>        
@@ -18,7 +20,7 @@ use yii\grid\GridView;
     foreach ($categories as $category): ?>
     <tr>
         <td>
-        <a href="/shop_test/web/?r=shop/index&cat_id=<?=$category->id?>">
+        <a href="/shop_test/web/?r=shop/index&id=<?=$category->id?>">
         <?= Html::encode("{$category->title} ({$category->id})") ?>
         </a>
         </td>
@@ -55,3 +57,12 @@ use yii\grid\GridView;
 }?>
 <br/>
     <?= Html::a('Создать товар', ['create-item'], ['class' => 'btn btn-success']) ?>
+<?php if (!empty($categories_all)) {
+        $category = $categories_all[0] ?>
+        <div style="margin-top: 50px">
+            <?=\pistol88\tree\widgets\Tree::widget(['model' => $category]);;?>
+        </div>
+<?php } ?>
+
+
+        

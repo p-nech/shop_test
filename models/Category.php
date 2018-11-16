@@ -20,7 +20,7 @@ class Category extends ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Имя',
-            'parent_id' => 'ID родителя',
+            'parent_id' => 'Родительская категория',
         ];
     }
 }

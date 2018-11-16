@@ -9,21 +9,23 @@ use app\models\Item;
 
 class ShopController extends \yii\web\Controller
 {
-    public function actionIndex($cat_id = 0)
+    public function actionIndex($id = 0)
     {        
-        $categories = Category::find()->where(['parent_id' => $cat_id])->all();
+        $categories = Category::find()->where(['parent_id' => $id])->all();
+        $categories_all = Category::find()->all();
 
         //ID для возврата на предыдущий уровень. Если он -1, значит мы в корне.
         $prev_id = -1;
-        if ($cat_id != 0) {
-            $query = Category::findOne($cat_id);
+        if ($id != 0) {
+            $query = Category::findOne($id);
             $prev_id = $query->parent_id;
         }
 
-        $items = Item::find()->where(['cat_id' => $cat_id])->all();
+        $items = Item::find()->where(['cat_id' => $id])->all();
 
         return $this->render('index', [
             'categories' => $categories,
+            'categories_all' => $categories_all,
             'prev_id' => $prev_id,
             'items' => $items
         ]);
@@ -58,6 +60,12 @@ class ShopController extends \yii\web\Controller
     public function actionDeleteCategory($id)
     {
         $this->findModelCategory($id)->delete();
+
+        /*Удаляем не только указанную категорию, но и все вложенные*/
+
+        if ($model = Category::findAll(['parent_id' => $id]) !== null) {
+            $model->delete();
+        }
 
         return $this->redirect(['index']);
     }
